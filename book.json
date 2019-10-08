@@ -1,0 +1,60 @@
+{
+  "title": "gitbook-network-base",
+  "description": "网络基础系列",
+  "author": "wchaochao",
+  "language": "zh-hans",
+  "styles": {
+    "website": "lib/styles/website.css"
+  },
+  "plugins": [
+    "-lunr",
+    "-search",
+    "search-pro",
+    "-highlight",
+    "prism",
+    "disqus",
+    "github",
+    "splitter",
+    "tbfed-pagefooter",
+    "toggle-chapters",
+    "include-codeblock",
+    "anchors",
+    "anchor-navigation-ex"
+  ],
+  "pluginsConfig": {
+    "disqus": {
+      "shortName": "https-wchaochao-gitbooks-io-webbook-content"
+    },
+    "github": {
+      "url": "https://github.com/wchaochao/gitbook-network-base"
+    },
+    "sharing": {
+      "weibo": false,
+      "facebook": true,
+      "twitter": true,
+      "google": false,
+      "instapaper": false,
+      "vk": false,
+      "all": [
+        "facebook",
+        "google",
+        "twitter",
+        "weibo",
+        "instapaper"
+      ]
+    },
+    "tbfed-pagefooter": {
+      "modify_label": "最近更新：",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "anchor-navigation-ex": {
+      "showLevel": false,
+      "float": { 
+	        "showLevelIcon": true,
+	        "level1Icon": "fa fa-hand-o-right",
+	        "level2Icon": "fa fa-hand-o-right",
+	        "level3Icon": "fa fa-hand-o-right"
+	    }
+    }
+  }
+}

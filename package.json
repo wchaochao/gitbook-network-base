@@ -1,0 +1,27 @@
+{
+  "name": "gitbook-network-base",
+  "version": "1.0.0",
+  "description": "网络基础系列",
+  "main": "index.js",
+  "scripts": {
+    "init": "gitbook init",
+    "build": "gitbook build",
+    "serve": "gitbook serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wchaochao/gitbook-network-base.git"
+  },
+  "keywords": [
+    "gitbook"
+  ],
+  "author": "wchaochao",
+  "bugs": {
+    "url": "https://github.com/wchaochao/gitbook-network-base/issues"
+  },
+  "homepage": "https://github.com/wchaochao/gitbook-network-base#readme",
+  "devDependencies": {
+    "gitbook": "^3.2.2",
+    "gitbook-cli": "^2.3.0"
+  }
+}
