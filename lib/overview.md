@@ -6,7 +6,7 @@
 
 从浏览器中输入网址开始探究网络的整个过程
 
-![网络图](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/circuit-diagram.png)
+![网络图](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/network-procedure.png)
 
 ## 浏览器
 

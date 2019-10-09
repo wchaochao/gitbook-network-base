@@ -53,7 +53,7 @@ uriEscaped ::: // URI转义字符
 
 Uniform Resource Location，统一资源定位符，通过位置标志资源
 
-![URL](6)
+![URL](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/url.png)
 
 ### 组成
 

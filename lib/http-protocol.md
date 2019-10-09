@@ -12,7 +12,7 @@ Hyper Text Transfer Protocol，超文本传输协议
 * 规定了客户端和服务器之间的通信格式，默认使用80端口
 * 由请求和响应组成
 
-![HTTP协议](11)
+![HTTP协议](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-protocol.png)
 
 ### 版本
 
@@ -27,7 +27,7 @@ Hyper Text Transfer Protocol，超文本传输协议
 * 请求头：请求的附加信息，每行一个头信息
 * 请求体：向服务器发送的数据
 
-![HTTP请求](15)
+![HTTP请求](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-request.png)
 
 ```
 GET / HTTP/1.0
@@ -54,7 +54,7 @@ Accept: */*
 * 响应头：响应的附加信息
 * 响应体：返回的数据
 
-![HTTP响应](15)
+![HTTP响应](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-response.png)
 
 ```
 HTTP/1.0 200 OK
@@ -77,7 +77,7 @@ Server: Apache 0.84
 * 4xx：客户端错误 – 请求有语法错误或请求无法实现
 * 5xx：服务器端错误 – 服务器未能实现合法的请求
 
-![状态码](https://image-static.segmentfault.com/388/443/3884439248-57f0f943c72f3)
+![状态码](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-status.png)
 
 ## 消息头
 
