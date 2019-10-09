@@ -57,7 +57,7 @@ Uniform Resource Location，统一资源定位符，通过位置标志资源
 
 ### 组成
 
-[URL组成](https://nodejs.org/api/url.html)
+![URL组成](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/url-structure.png)
 
 * `protocol`: 协议
 * `username`: 用户名，用于权限验证，可省略
