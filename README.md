@@ -10,8 +10,18 @@
 
 * 概述
 * URI
+* MIME类型
 * HTTP协议
 * HTTP缓存
+* IP地址
+* DNS
+* Socket库
+* 协议栈
+* 包
+* TCP协议
+* UDP协议
+* IP协议
+* 数据发送
 
 ## 推荐资料
 

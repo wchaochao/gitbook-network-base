@@ -8,6 +8,8 @@ Uniform Resource Identifier，统一资源标识符，用于唯一的标志资�
 
 ## 词法
 
+由ASCII码可打印字符组成
+
 ```
 uri ::: // URI
   uriCharacters(opt)
@@ -16,11 +18,11 @@ uriCharacters ::: // 多个URI字符
   uriCharacter uriCharacters(opt)
 
 uriCharacter ::: // 单个URI字符
-  uriUnescaped // URI非转义字符
+  uriUnescaped // URI普通字符
   uriReserved // URI保留字符
-  uriEscaped // URI转义字符
+  uriEscaped // URI编码字符
 
-uriUnescaped :::  // URI非转义字符
+uriUnescaped :::  // URI普通字符
   uriAlpha // URI字母
   DecimalDigit // 十进制数字
   uriMark // URI标记
@@ -35,18 +37,24 @@ uriMark ::: one of // URI标记
 uriReserved ::: one of // URI保留字符
   ; / ? : @ & = + $ ,
 
-uriEscaped ::: // URI转义字符
+uriEscaped ::: // URI编码字符
   % HexDigit HexDigit
 ```
 
-转义，使用UTF-8编码，再把每个字节使用两个十六进制表示，前面加上%
+## 编码
 
-* URI非转义字符：不需要转义
-* URI保留字符：有时需要转义，如查询参数里的值
-* URI转义字符：一定要转义
+### 时机
+
+* 非ASCII可打印字符
+* 会引起URI歧义，如查询参数中的&
+
+### 百分号编码
+
+* 对字符使用UTF-8编码，并用十六进制表示
+* 每两个十六进制（一个字节）前面都加上%
 
 ```
-字'转码：%E5%AD%97
+'字'编码：%E5%AD%97
 ```
 
 ## URL
@@ -60,8 +68,8 @@ Uniform Resource Location，统一资源定位符，通过位置标志资源
 ![URL组成](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/url-structure.png)
 
 * `protocol`: 协议
-* `username`: 用户名，用于权限验证，可省略
-* `password`: 密码，用于权限验证，可省略
+* `username`: 用户名，用于认证，可省略
+* `password`: 密码，用于认证，可省略
 * `host`: 主机，由主机名和端口号组成
 * `hostname`: 主机名，对应具体的服务器
 * `port`: 端口号，对应服务器程序，省略时为协议默认的端口
