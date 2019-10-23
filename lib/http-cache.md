@@ -147,4 +147,4 @@ If-Modified-Since: Wed, 02 Jan 2019 03:06:03 GMT
 
 ## 策略
 
-![缓存策略](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-cache-decision-tree.png.png)
+![缓存策略](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-cache-decision-tree.png)
