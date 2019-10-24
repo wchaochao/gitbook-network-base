@@ -8,7 +8,7 @@ Hyper Text Transfer Protocol，超文本传输协议
 
 ## 介绍
 
-由请求和响应组成的传输层协议
+由请求和响应组成的基于TCP的传输层协议
 
 ![HTTP协议](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-protocol.png)
 
@@ -17,7 +17,7 @@ Hyper Text Transfer Protocol，超文本传输协议
 * `HTTP0.9`: 只支持GET方法
 * `HTTP1.0`: 支持GET、POST、HEAD方法，每次响应后关闭连接
 * `HTTP1.1`: 新增PUT、DELETE、OPTIONS、TRACE、CONNECT方法，默认使用持久连接，主流版本
-* `HTTP2`: 二进制数据流传输，支持多路复用
+* `HTTP2`: 二进制数据流传输，支持消息头压缩、多路复用、服务器推送
 
 ## 请求
 
@@ -41,11 +41,25 @@ Accept: */*
 | POST | 发送数据 |
 | PUT | 更新数据 |
 | DELETE | 删除数据 |
-| HEAD | 获取响应头 |
-| OPTIONS | 预检请求 |
-| TRACE | 获取服务器收到的请求行和请求头，用于使用代理时查看请求信息 |
-| CONNECT | 将连接改为管道方式的代理服务器，用于使用代理传输加密信息 |
+| HEAD | 获取GET响应首部 |
+| OPTIONS | 预检请求，请求服务器告知其支持的各种功能 |
+| TRACE | 获取服务器收到的请求报文，用于使用代理时查看请求信息的变化 |
+| CONNECT | 告知代理服务器连接目标服务器，用于使用代理传输加密信息 |
 | PATCH | 部分更新 |
+
+#### OPTIONS请求
+
+![OPTIONS请求](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/request-options.png)
+
+#### TRACE请求
+
+![TRACE请求](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/request-trace.png)
+
+#### CONNECT请求
+
+HTTP 客户端通过 CONNECT 方法请求隧道代理创建一条到达任意目的服务器和端口的 TCP 连接，并对客户端和服务器之间的后继数据进行盲转发
+
+![CONNECT请求](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/request-connect.webp)
 
 ## 响应
 
@@ -90,30 +104,37 @@ Server: Apache 0.84
 | 303 | See Other | 资源在另一个地址，需要GET请求 |
 | 304 | Not Modified | 资源未更新 |
 | 307 | Temporary Redirect | 临时重定向 |
+| 307 | Permanent Redirect | 永久重定向 |
 | 400 | Bad Request | 请求错误 |
 | 401 | Unauthorized | 认证失败 |
 | 403 | Forbidden | 禁止访问 |
 | 404 | Not Found | 未找到资源 |
 | 405 | Method Not Allowed | 方法不允许 |
 | 407 | Proxy Authentication Required | 需要代理的认证信息 |
+| 408 | Request Timeout | 请求超时 |
 | 416 | Request Range Not Satisfiable | 范围请求不满足 |
 | 500 | Internal Server Error | 服务器错误 |
 | 502 | Bad Gatway | 网关错误 |
 | 503 | Service Unavailable | 服务不可用 |
+| 504 | Gatway Timeout | 网关错误 |
 
 ![状态码](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-status.png)
 
 ## 消息头
 
+客户端和服务器端之间的协商信息
+
 ### 上下文
 
-通用头
+客户端、服务器端信息
+
+**通用头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Date | 消息的时间 | Date: Dec, 26 Dec 2015 17:30:00 GMT |
 
-请求头
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -122,7 +143,7 @@ Server: Apache 0.84
 | Referer | 引荐网页 | Referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript |
 | From | 请求人的邮件地址 | From: webmaster@example.org |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -130,7 +151,9 @@ Server: Apache 0.84
 
 ### 内容协商
 
-通用头
+协商消息体的相关信息
+
+**通用头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -138,7 +161,7 @@ Server: Apache 0.84
 | Content-Length | 消息体的长度 | Content-Length: 348 |
 | Content-Disposition | 数据描述 | Content-Disposition: attachment; filename="filename.jpg" |
 
-请求头
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -147,7 +170,7 @@ Server: Apache 0.84
 | Accept-Encoding | 可接受的压缩方式 | Accept-Encoding: gzip, deflate |
 | Accept-Language | 可接受的语言列表 | Accept-Language: en-US |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -157,38 +180,58 @@ Server: Apache 0.84
 
 ### 传输编码
 
-请求头
+响应长度不定时分块传输
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
-| TE | 可接受的传输编码 | TE: trailers, deflate;q=0.5 |
+| TE | 可接受的传输编码 | TE: chunked |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Transfer-Encoding | 响应的传输编码 | Transfer-Encoding: chunked |
-| Trailer | 分块传输的附加字段 | Trailer: Expires |
+| Trailer | 分块传输结束后的附加字段 | Trailer: Content-MD5 |
+
+```
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Trailer: Content-MD5
+
+d
+Hello CxmyDev
+3
+123
+0
+
+Content-MD5: skljfaufdoasjfldjafj
+```
 
 ### 范围请求
 
-请求头
+主要针对较大的文件的请求或者上传
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Range | 请求范围 | Range: bytes=500-999 |
-| If-Range | 资源未修改时获取部分内容 | If-Range: "9jd00cdj34pss9ejqiw39d82f20d0ikd" |
+| If-Range | 资源未修改时获取部分内容，用于在资源变化时重新下载 | If-Range: "9jd00cdj34pss9ejqiw39d82f20d0ikd" |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
-| Accept-Ranges | 范围的单位 | Accept-Ranges: bytes |
-| Content-Range | 响应的范围 | Content-Range: bytes 200-1000/67589 |
+| Accept-Ranges | 是否支持范围请求 | Accept-Ranges: bytes |
+| Content-Range | 响应范围 | Content-Range: bytes 200-1000/67589 |
 
 ### 跨域请求
 
-请求头
+用于实现CORS
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -196,7 +239,7 @@ Server: Apache 0.84
 | Access-Control-Request-Method | 跨域请求使用的方法 | Access-Control-Request-Method: GET |
 | Access-Control-Request-Headers | 跨域请求要传递的头部 | Access-Control-Request-Headers: X-Custom-Header, Content-Type |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -205,27 +248,30 @@ Server: Apache 0.84
 | Access-Control-Allow-Headers | 跨域请求时允许传递的头部 | Access-Control-Allow-Headers: X-Custom-Header |
 | Access-Control-Expose-Headers | 跨域请求时响应公开的头部 | Access-Control-Expose-Headers: Content-length |
 | Access-Control-Allow-Credentials | 跨域请求时是否允许传递凭证 | Access-Control-Allow-Credential: true |
-| Access-Control-Max-Age | 预检请求结果缓存的秒数 | Access-Control-Max-Age: 86400s |
+| Access-Control-Max-Age | 预检请求缓存的秒数 | Access-Control-Max-Age: 86400 |
 
 ### 缓存控制
 
-通用头
+设置缓存规则
+
+**通用头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Cache-Control | 缓存控制（HTTP1.1） | Cache-Control: private, max-age=600 |
 | Pragma | 缓存设置（HTTP1.0） | Pragma: no-cache |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Expires | 缓存过期时间（HTTP1.0） | Expires: Wed, 21 Oct 2015 07:28:00 GMT |
-| Age | 响应在代理中缓存的秒数 | Age: 12 |
 
 ### 资源校验
 
-请求头
+标志资源，在资源变化时进行相应的操作
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -234,7 +280,7 @@ Server: Apache 0.84
 | If-Modified-Since | 资源在某个时间后修改了进行相应的操作 | If-Modified-Since: Dec, 26 Dec 2015 17:30:00 GMT |
 | If-Unmodified-Since | 资源在某个时间后未修改进行相应的操作 | If-Unmodified-Since: Dec, 26 Dec 2015 17:30:00 GMT |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -243,7 +289,9 @@ Server: Apache 0.84
 
 ### 连接管理
 
-通用头
+长连接，节省TCP握手的时间
+
+**通用头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -251,30 +299,32 @@ Server: Apache 0.84
 
 ### Cookie
 
-请求头
+服务器存储在客户端的信息
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Cookie | 服务器域名下的Cookie信息 | Cookie: PHPSESSID=298zf09hf012fh2; csrftoken=u32t4o3tb3gg43; |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Set-Cookie | 服务器设置Cookie | Set-Cookie: __Host-id=1; Secure; Path=/; domain=example.com |
 
-
-
 ### 认证
 
-请求头
+身份认证
+
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Authorization | 认证信息 | Authorization: Basic OSdjJGRpbjpvcGVuIANlc2SdDE== |
 | Proxy-Authorization | 代理的认证信息 | Proxy-Authorization: Basic IOoDZRgDOi0vcGVuIHNlNidJi2== |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -283,7 +333,9 @@ Server: Apache 0.84
 
 ### 重定向
 
-响应头
+资源路径改变时需要重定向
+
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -292,28 +344,33 @@ Server: Apache 0.84
 
 ### 代理
 
-通用头
+代理服务器信息
+
+**通用头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
-| Via | 经过的代理 | Via: HTTP/1.1 GWA |
+| Via | 经过的代理 | Via: 1.1 cache.joes-hardware.com, 1.1 proxy.irenes-isp.net |
 
-请求头
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Forwareded | 客户端请求经过的代理信息 | Forwarded: for=192.0.2.60; proto=http; by=203.0.113.43 |
-| X-Forwarded-For | 客户端IP及经过的代理IP | Forwarded: for=192.0.2.60; proto=http; by=203.0.113.43 |
+| X-Forwarded-For | 客户端IP及经过的代理IP | Forwarded: 114.248.238.236 |
 | X-Forwarded-Host | 客户端原始请求的Host | X-Forwarded-Host: id42.example-cdn.com |
 | X-Forwarded-Proto | 客户端和代理之间的协议 | X-Forwarded-Proto: https |
+
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Vary | 以指定消息头筛选代理缓存版本 | Vary: Accept-Encoding |
+| Age | 响应在代理缓存中存在的的秒数 | Age: 120 |
 
 ### 安全
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
@@ -323,13 +380,13 @@ Server: Apache 0.84
 
 ### 控制
 
-请求头
+**请求头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
 | Expect | 期待的行为 | Expect: 100-continue |
 
-响应头
+**响应头**
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |

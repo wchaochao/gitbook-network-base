@@ -67,7 +67,7 @@ Uniform Resource Location，统一资源定位符，通过位置标志资源
 
 ![URL组成](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/url-structure.png)
 
-* `protocol`: 协议
+* `protocol`: 协议，用于确认发出何种请求
 * `username`: 用户名，用于认证，可省略
 * `password`: 密码，用于认证，可省略
 * `host`: 主机，由主机名和端口号组成

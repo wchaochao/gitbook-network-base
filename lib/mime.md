@@ -59,14 +59,15 @@ Content-Length: 385
 Content-Type: text/html
 Content-Range: bytes 100-200/1270
 
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+eta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="vieport" content
 --3d6b6a416f9b5
 Content-Type: text/html
 Content-Range: bytes 300-400/1270
 
-color: #f0f0f2;
-margin: 0;
-padding: 0;
-font-family: "Open Sans", "Helvetica
+-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", "Helvetica
 --3d6b6a416f9b5--
 ```
