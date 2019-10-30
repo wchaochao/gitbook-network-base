@@ -8,20 +8,28 @@
 
 ## 目录
 
+### 基础篇
+
 * 概述
 * URI
 * MIME类型
-* HTTP协议
-* HTTP缓存
-* IP地址
-* DNS
 * Socket库
 * 协议栈
+
+### 协议篇
+
+* 互联网协议
 * 包
-* TCP协议
-* UDP协议
+* 以太网协议
+* IP地址
 * IP协议
-* 数据发送
+* UDP协议
+* TCP协议
+* HTTP协议
+* HTTP缓存
+* DNS
+* DNS协议
+* DHCP协议
 
 ## 推荐资料
 

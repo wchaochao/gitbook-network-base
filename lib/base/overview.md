@@ -4,7 +4,7 @@
 
 ---
 
-从浏览器中输入网址开始探究网络的整个过程
+从浏览器输入网址开始探究网络的整个过程
 
 ![网络图](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/network-procedure.png)
 
@@ -17,7 +17,8 @@
 
 ## Socket库
 
-* 委托协议栈发送请求
+* 提供网络请求的API
+* 委托协议栈发送请求、接收响应
 
 ## 协议栈
 

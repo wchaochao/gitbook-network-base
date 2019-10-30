@@ -6,13 +6,11 @@
 
 Hyper Text Transfer Protocol，超文本传输协议
 
-## 介绍
-
-由请求和响应组成的基于TCP的传输层协议
+* 建立在TCP之上的传输层协议，由请求和响应组成
 
 ![HTTP协议](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-protocol.png)
 
-### 版本
+## 版本
 
 * `HTTP0.9`: 只支持GET方法
 * `HTTP1.0`: 支持GET、POST、HEAD方法，每次响应后关闭连接
@@ -116,7 +114,7 @@ Server: Apache 0.84
 | 500 | Internal Server Error | 服务器错误 |
 | 502 | Bad Gatway | 网关错误 |
 | 503 | Service Unavailable | 服务不可用 |
-| 504 | Gatway Timeout | 网关错误 |
+| 504 | Gatway Timeout | 网关超时 |
 
 ![状态码](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-status.png)
 
@@ -151,7 +149,7 @@ Server: Apache 0.84
 
 ### 内容协商
 
-协商消息体的相关信息
+消息体的协商信息
 
 **通用头**
 
@@ -211,7 +209,7 @@ Content-MD5: skljfaufdoasjfldjafj
 
 ### 范围请求
 
-主要针对较大的文件的请求或者上传
+主要针对较大文件的请求或上传
 
 **请求头**
 
@@ -246,7 +244,7 @@ Content-MD5: skljfaufdoasjfldjafj
 | Access-Control-Allow-Origin | 跨域请求时允许的源 | Access-Control-Allow-Origin: https://developer.mozilla.org |
 | Access-Control-Allow-Methods | 跨域请求时允许的方法 | Access-Control-Allow-Methods: GET, POST, OPTIONS |
 | Access-Control-Allow-Headers | 跨域请求时允许传递的头部 | Access-Control-Allow-Headers: X-Custom-Header |
-| Access-Control-Expose-Headers | 跨域请求时响应公开的头部 | Access-Control-Expose-Headers: Content-length |
+| Access-Control-Expose-Headers | 跨域请求时响应暴露的头部 | Access-Control-Expose-Headers: Content-length |
 | Access-Control-Allow-Credentials | 跨域请求时是否允许传递凭证 | Access-Control-Allow-Credential: true |
 | Access-Control-Max-Age | 预检请求缓存的秒数 | Access-Control-Max-Age: 86400 |
 

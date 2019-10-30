@@ -6,7 +6,7 @@
 
 Domain Name System，域名系统，用于关联域名和IP
 
-## 域名
+## 域名结构
 
 主机名.次级域名.顶级域名.根域名，由点号划分
 
@@ -27,14 +27,14 @@ www.lab.example.com
 
 ![域名解析](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/domain-resolve.png)
 
-## 域名解析器
+### 域名解析器
 
 执行域名解析的程序，包含在操作系统的Socket库中
 
 * 向DNS服务器发送查询消息
 * 接收DNS服务器返回的响应消息，取出IP地址
 
-## 域名服务器
+### 域名服务器
 
 根据查询的域名和记录类型返回相关的记录
 
@@ -49,7 +49,7 @@ www.lab.example.com
 
 ![DNS服务器](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/dns-server.png)
 
-## 分级查询
+### 分级查询
 
 从根域名开始，依次查询每一级域名的NS记录，直到查到最终的IP地址
 
@@ -60,7 +60,31 @@ www.lab.example.com
 
 ![DNS服务器查询](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/dns-server-query.png)
 
-## 缓存
+### 缓存
 
 * DNS查询后的记录会被缓存在DNS服务器中
 * DNS记录在DNS服务器中有TTL(Time To Live)，过期后该记录会被删除
+
+## DNS协议
+
+建立在UDP协议之上的应用层协议，默认端口为53
+
+### 报文格式
+
+```
+    +---------------------+
+    |        Header       | 报文头
+    +---------------------+
+    |       Question      | 查询请求
+    +---------------------+
+    |        Answer       | 应答
+    +---------------------+
+    |      Authority      | 授权应答
+    +---------------------+
+    |      Additional     | 附加信息
+    +---------------------+
+```
+
+* 报文头：请求/响应信息
+* 查询请求：查询域名、Class、记录类型
+* 应答：返回资源记录
