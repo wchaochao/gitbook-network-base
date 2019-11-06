@@ -8,17 +8,29 @@
 
 ## 结构
 
-TCP/IP包结构
+分为头部、数据、尾部三部分
 
 ![包结构](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/package-structure.png)
 
-* MAC头部：控制子网内的包传输
-* IP头部：控制子网间的包传输
-* TCP头部：控制套接字的连接，保证包无遗漏
+### 头部
+
+* `preamble`: 序言，7个字节，每个字节都是0xAA，用于确定时钟频率
+* `SFD`: Start Frame Delimiter, 起始信号, 0xAB
+* `DST`: Destination, 6字节的目的地址
+* `SRC`: Source, 6字节的发出地址
+* `Type`: 数据的类型，用于确定上层协议，如0×0800为IPv4，0×0806为ARP
+
+### 数据
+
+存放更高层协议的数据包，如IP数据包
+
+### 尾部
+
+校验序列，检验数据的传输是否发生错误
 
 ## 拆分
 
-数据超过包最大长度时需要拆分
+数据超过包最大长度时需要拆分，一般为1500字节
 
 ![拆分](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/package-split.png)
 

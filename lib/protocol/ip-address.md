@@ -4,7 +4,7 @@
 
 ---
 
-Internet Protocol Address，网络协议地址
+Internet Protocol Address，网络协议地址，分配给网卡的地址
 
 ## 版本
 

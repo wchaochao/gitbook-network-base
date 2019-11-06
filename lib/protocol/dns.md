@@ -62,8 +62,13 @@ www.lab.example.com
 
 ### 缓存
 
-* DNS查询后的记录会被缓存在DNS服务器中
-* DNS记录在DNS服务器中有TTL(Time To Live)，过期后该记录会被删除
+* DNS查询后的记录会被缓存在浏览器和域名解析器中
+* DNS记录有TTL(Time To Live)，过期后该记录会被删除
+
+```
+# windows下显示DNS缓存
+ipconfig /displaydns
+```
 
 ## DNS协议
 

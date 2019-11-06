@@ -136,7 +136,7 @@ Server: Apache 0.84
 
 | 消息头 | 说明 | 示例 |
 | --- | --- | --- |
-| Host | 服务器主机名 | Host: developer.cdn.mozilla.net |
+| Host | 服务器域名和端口 | Host: developer.cdn.mozilla.net |
 | User-Agent | 客户端信息 | User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36 |
 | Referer | 引荐网页 | Referer: https://developer.mozilla.org/en-US/docs/Web/JavaScript |
 | From | 请求人的邮件地址 | From: webmaster@example.org |

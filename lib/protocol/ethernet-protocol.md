@@ -4,24 +4,37 @@
 
 ---
 
-Ethernet，规定了电子信号如何组成数据包，解决了子网内部的点对点通信
+Ethernet Protocol，以太网的传输协议
+
+* 规定了以太网数据包的格式
+* 解决了以太网内的点对点通信
+
+## 以太网
+
+一种为多台计算机能够彼此自由和廉价地相互通信而设计的通信技术
+
+* 用发送方MAC地址识别发送方
+* 用接收方MAC地址识别接收方
+* 用以太类型识别包内容
+
+![以太网](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/ethernet.png)
 
 ## 以太网数据包
 
+负载用于存放更高层的协议
+
+![以太网数据包](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-package.png)
+
 ### 头部
 
-* 发送者的MAC地址和接收者MAC地址
+* 源MAC地址和目的MAC地址
+* 网络层协议类型，如IP协议、ARP协议
 
-### MAC地址
+## 以太网传输
 
-Media Access Control，硬件地址，烧录在网卡中，由48位二进制数组成
+以太网通过广播的方式在子网内收发数据
 
-* 前24位：组织唯一标志符，用于区分厂家
-* 后24位：扩展标识符，用于区分同一厂家的网卡
-
-![MAC地址](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/mac-address.png)
-
-## 广播
+### CSMA/CD
 
 Career Sense Multiple Access with Collision Detection，带冲突检测的载波监听多路访问，以太网的广播机制
 

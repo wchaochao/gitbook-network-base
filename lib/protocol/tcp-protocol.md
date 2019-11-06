@@ -15,7 +15,7 @@ Transmission Control Protocol, 传输控制协议
 * TCP数据包放入IP数据包负载中
 * TCP的负载存放应用层数据包，如HTTP数据包
 
-![TCP报文](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-package.png)
+![TCP数据包](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-package.png)
 
 ### 头部
 
@@ -23,9 +23,7 @@ Transmission Control Protocol, 传输控制协议
 * 发送的数据包编号
 * 接收的数据包ACK确认号和滑动窗口大小
 * 控制标志位
-* 校验和
-
-![TCP头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-head.png)
+* 校验码
 
 ### 标志位
 
@@ -37,6 +35,8 @@ Transmission Control Protocol, 传输控制协议
 * FIN：关闭连接标志，为1时关闭连接
 
 ## 数据包传输
+
+有序、可靠
 
 ### 编号
 
@@ -57,7 +57,7 @@ Transmission Control Protocol, 传输控制协议
 包确认机制，用于在丢包时重发
 
 * 接收端在接收到数据包后，发送要收到的下一个数据包的编号
-* 如果连续收到三个重复的ACK或ACK超时，则确认丢包，重新发送这个包
+* 如果连续收到三个重复的ACK或ACK超时（超时时间根据ACK返回时间动态调整），则确认丢包，重新发送这个包
 
 ![ACK确认](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/ack-retry.png)
 
@@ -101,22 +101,22 @@ TCP连接上只允许一个未被确认的小分组（数据包小于最大报�
 
 ### 滑动窗口
 
-接收端根据自己的状况通告窗口大小，限制发送端能发送的数据包总大小
+接收端根据自己的状况通告窗口大小，进行流量控制
 
 * 接收端在接收到数据包后，发送当前能接收的数据包总大小
 * 发送端下一次发送数据包时，根据滑动窗口大小调整数据包发送
 
 ![滑动窗口](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/slide-window.jpg)
 
-### 拥塞控制
+### 拥塞窗口
 
-根据网络情况调整数据包的发送
+根据网络情况调整拥塞窗口大小，进行拥塞控制，实际窗口取滑动窗口和拥塞窗口的最小值
 
 * 发送端一开始发送包时执行慢开始算法，拥塞窗口指数增长
 * 到达慢启动阈值时执行拥塞避免算法，拥塞窗口线性增长
 * 一旦发送丢包，慢启动阈值设为当前拥塞窗口的一半，拥塞窗口重新从1开始执行慢开始算法
 
-![拥塞控制](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/congestion-control.png)
+![拥塞窗口](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/congestion-control.png)
 
 ## 传输过程
 
@@ -124,7 +124,7 @@ TCP连接上只允许一个未被确认的小分组（数据包小于最大报�
 
 ### 三次握手
 
-确认客户端和服务器端都能收发数据
+同步初始序号
 
 * 客户端发送SYN，开始连接，告知客户端数据包的初始序号
 * 服务器端返回ACK，表示已接收，并给客户端发送SYN，告知服务器端数据包的初始序号
@@ -138,5 +138,6 @@ TCP连接上只允许一个未被确认的小分组（数据包小于最大报�
 
 * 主动关闭的一方发送FIN，表示单方面关闭数据传输，另一方发送ACK确认
 * 另一方数据传输完毕后也发送FIN，表示关闭这个方向的数据传输，主动关闭的一方发送ACK确认
+* 主动关闭的一方进入TIME_WAIT状态，防止发送的ACK丢失
 
 ![四次挥手](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-close.jpg)
