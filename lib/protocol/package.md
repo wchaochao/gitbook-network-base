@@ -14,11 +14,11 @@
 
 ### 头部
 
-* `preamble`: 序言，7个字节，每个字节都是0xAA，用于确定时钟频率
-* `SFD`: Start Frame Delimiter, 起始信号, 0xAB
+* `preamble`: 7字节的序言，每个字节都是0xAA，用于确定时钟信号
+* `SFD`: Start Frame Delimiter, 1字节的起始信号, 为0xAB
 * `DST`: Destination, 6字节的目的地址
 * `SRC`: Source, 6字节的发出地址
-* `Type`: 数据的类型，用于确定上层协议，如0×0800为IPv4，0×0806为ARP
+* `Type`: 上层协议类型，如0×0800为IPv4，0×0806为ARP
 
 ### 数据
 
@@ -39,6 +39,6 @@
 根据IP地址确定是否在同一子网内
 
 * 在同一子网内，根据MAC地址通过集线器或交换机发送到目的设备
-* 不在同一子网内，根据MAC地址发送到路由器，再由路由器转发
+* 不在同一子网内，根据MAC地址发送到路由器，再由路由器根据IP地址转发
 
 ![TCP/IP网络](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-ip-internet.png)

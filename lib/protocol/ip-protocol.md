@@ -19,10 +19,12 @@ Internet Protocol, 网际协议
 
 ### 头部
 
-* IP版本和负载的协议类型，如IPv4、TCP协议、UDP协议
+不算可选字段20字节
+
+* IP版本和传输层的协议类型
 * 源IP地址和目的IP地址
 * 分片ID和分片偏移量
-* IP包存活时间
+* 包的有效期，每经过一个路由器转发就减1
 * 头部总长度和包总长度
 * 校验码
 
@@ -34,10 +36,6 @@ Internet Protocol, 网际协议
 * 不在同一子网内，传送给路由器，由路由器转发
 
 ![路由表](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/route-table.png)
-
-### 路由器
-
-一台配备有多个网卡的专用电脑，通过网卡接入到不同的网络中
 
 ### 丢弃
 
@@ -65,10 +63,6 @@ arp -a
 ```
 
 ![ARP广播](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/arp-broadcast.png)
-
-### RIP协议
-
-Routing Information Protocol, 用来动态生成路由表的协议
 
 ### ICMP协议
 

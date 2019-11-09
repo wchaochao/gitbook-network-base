@@ -28,3 +28,7 @@
 ## 设备篇
 
 * [网卡](lib/device/nic.md)
+* [网线](lib/device/cable.md)
+* [集线器](lib/device/hub.md)
+* [交换机](lib/device/switch.md)
+* [路由器](lib/device/router.md)

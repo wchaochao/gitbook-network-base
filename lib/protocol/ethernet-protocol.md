@@ -34,14 +34,32 @@ Ethernet Protocol，以太网的传输协议
 
 以太网通过广播的方式在子网内收发数据
 
-### CSMA/CD
+### 广播
 
-Career Sense Multiple Access with Collision Detection，带冲突检测的载波监听多路访问，以太网的广播机制
-
-* 载波监听：监听（Sense）表示网络是否正在使用的电信号（Career）
-* 多路复用：多个（Multiple）设备可以同时访问（Access）传输介质
-* 带冲突检测：检测（Detection）因同一时刻的传输而导致的电信号冲突（Collision）
+向其他设备广播信号
 
 ![CSMA机制](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/ethernet-CSMA.png)
 
+### 碰撞
+
+同时发送信号时会发生碰撞
+
 ![CD机制](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/ethernet-CD.png)
+
+### 脉冲信号
+
+以太网中没有数据传输时，会填充脉冲信号
+
+* 告知自身状态
+* 检测对方是否在正常工作
+
+![脉冲信号](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/pulse.png)
+
+### 工作模式
+
+可以通过脉冲信号协商使用哪种模式
+
+* 半双工模式：进行碰撞检测，发送和接收不能同时进行
+* 全双工模式：不进行碰撞检测，发送和接收能同时进行
+
+![工作模式](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/work-mode.png)
