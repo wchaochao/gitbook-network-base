@@ -53,7 +53,7 @@ Ethernet Protocol，以太网的传输协议
 * 告知自身状态
 * 检测对方是否在正常工作
 
-![脉冲信号](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/pulse.png)
+![脉冲信号](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/pulse.png)
 
 ### 工作模式
 
