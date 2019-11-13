@@ -25,10 +25,19 @@
 * [HTTP协议](lib/protocol/http-protocol.md)
 * [HTTP缓存](lib/protocol/http-cache.md)
 
-## 设备篇
+## 局域网篇
 
-* [网卡](lib/device/nic.md)
-* [网线](lib/device/cable.md)
-* [集线器](lib/device/hub.md)
-* [交换机](lib/device/switch.md)
-* [路由器](lib/device/router.md)
+* [局域网](lib/lan/index.md)
+* [网卡](lib/lan/nic.md)
+* [网线](lib/lan/cable.md)
+* [集线器](lib/lan/hub.md)
+* [交换机](lib/lan/switch.md)
+* [路由器](lib/lan/router.md)
+
+## 互联网篇
+
+* [接入网](lib/internet/access.md)
+* [ADSL接入网](lib/internet/ADSL.md)
+* [FTTH接入网](lib/internet/FTTH.md)
+* [BAS](lib/internet/BAS.md)
+* [互联网](lib/internet/index.md)
