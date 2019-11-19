@@ -13,9 +13,11 @@ Internet Control Message Protocol，网络控制信息协议
 
 封装在IP数据包中
 
-* `Type`: 信息的大类型
-* `Code`: 具体的小类型
-* `Checksum`: 检验码
+* `Type`: ICMP消息的类型
+* `Code`: Type下的小类型
+* 检验和
+
+![ICMP头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/icmp-header.png)
 
 ## ICMP消息
 

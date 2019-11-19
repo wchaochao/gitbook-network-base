@@ -19,17 +19,23 @@ Transmission Control Protocol, 传输控制协议
 
 ### 头部
 
+不算可选字段20字节
+
 * 源端口号和目的端口号
 * 发送的数据包编号
 * 接收的数据包ACK确认号和滑动窗口大小
 * 控制标志位
-* 校验码
+* 紧急指针，一个正的偏移量，加上数据包编号为紧急数据最后一个字节的序号
+* 首部长度
+* 检验和
+
+![TCP头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/tcp-header.png)
 
 ### 标志位
 
 * URG：紧急标志，为1时紧急指针有效
 * ACK：确认标志，为1时ACK确认号有效
-* PSH：push标志，为1时尽快将该报文交给应用层
+* PSH：push标志，为1时尽快将包交给应用层
 * RST：复位标志，为1时重建连接
 * SYN：同步标志，为1时建立连接，同步初始编号和滑动窗口大小
 * FIN：关闭连接标志，为1时关闭连接

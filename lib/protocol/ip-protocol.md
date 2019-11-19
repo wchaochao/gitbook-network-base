@@ -21,12 +21,14 @@ Internet Protocol, 网际协议
 
 不算可选字段20字节
 
-* IP版本和传输层的协议类型
 * 源IP地址和目的IP地址
 * 分片ID和分片偏移量
-* 包的有效期，每经过一个路由器转发就减1
-* 头部总长度和包总长度
-* 校验码
+* 包的生存时间，每经过一个路由器转发就减1
+* IP版本和协议类型，如ICMP、TCP、UDP
+* 头部长度和总长度，最大65535字节，受以太网包限制
+* 首部检验和
+
+![IP头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/ip-header.png)
 
 ## 数据包传输
 
@@ -45,25 +47,3 @@ IP数据包传输是尽力式的，一旦发生异常情况，就会被轻易丢
 * 超过存活时间
 * 数据包出错
 * 路由表未及时更新，无法送达目的地
-
-## 辅助协议
-
-辅助IP地址传输的协议
-
-### ARP协议
-
-Address Resolution Protocol，地址解析协议，介于链接层和网络层的协议，用于实现IPv4地址到MAC地址的转换
-
-* 数据包的MAC地址填广播地址FF:FF:FF:FF:FF:FF，向子网内所有计算机广播，询问已知IP地址的MAC地址
-* 得到结果后将结果缓存到内存中的ARP缓存表
-
-```bash
-# 显示ARP缓存表xx
-arp -a
-```
-
-![ARP广播](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/arp-broadcast.png)
-
-### ICMP协议
-
-在IP协议发生错误时，发送ICMP消息告知发送方

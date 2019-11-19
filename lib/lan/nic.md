@@ -63,3 +63,5 @@ Media Access Control，网卡编号，烧录在网卡的ROM中，由48位二进�
 * 读取数字信号：根据一段特定的序列测量出时钟信号，再分解出数字信号
 
 ![信号传输](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/digital-signal.png)
+
+![还原数字信号](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/digital-signal-reduction.png)

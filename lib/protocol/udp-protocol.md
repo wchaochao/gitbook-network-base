@@ -23,5 +23,7 @@ User Datagram Protocol, 用户数据报协议
 8字节
 
 * 源端口和目的端口
-* 数据长度
-* 校验码
+* 总长度
+* 校验和
+
+![UDP头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/udp-header.png)

@@ -15,7 +15,7 @@ Ethernet Protocol，以太网的传输协议
 
 * 用发送方MAC地址识别发送方
 * 用接收方MAC地址识别接收方
-* 用以太类型识别包内容
+* 用类型识别包内容
 
 ![以太网](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/ethernet.png)
 
@@ -28,7 +28,9 @@ Ethernet Protocol，以太网的传输协议
 ### 头部
 
 * 源MAC地址和目的MAC地址
-* 网络层协议类型，如IP协议、ARP协议
+* 类型，如IP协议、ARP协议
+
+![以太网头部](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-computer-base/ethernet-header.png)
 
 ## 以太网传输
 

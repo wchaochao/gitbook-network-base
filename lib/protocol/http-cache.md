@@ -13,7 +13,7 @@
 ### 分类
 
 * 私有缓存：如浏览器缓存
-* 共享缓存：如代理缓存、CDN、负载均衡器
+* 共享缓存：如缓存服务器、CDN、负载均衡器
 
 ![缓存分类](https://raw.githubusercontent.com/wchaochao/images/master/gitbook-network-base/http-cache-type.png)
 
